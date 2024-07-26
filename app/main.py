@@ -5,19 +5,14 @@ class Car:
         clean_mark: int,
         brand: str
     ) -> None:
-        self.comfort_class = self.validate_comfort_class(comfort_class)
-        self.clean_mark = self.validate_clean_mark(clean_mark)
+        self.comfort_class = self.validate(comfort_class, 1, 7)
+        self.clean_mark = self.validate(clean_mark, 1, 10)
         self.brand = brand
 
-    def validate_comfort_class(self, comfort_class: int) -> int:
-        if 1 <= comfort_class <= 7:
-            return comfort_class
-        return 1
-
-    def validate_clean_mark(self, clean_mark: int) -> int:
-        if 1 <= clean_mark <= 10:
-            return clean_mark
-        return 1
+    def validate(self, value: int, minimal: int, maximal: int) -> int:
+        if minimal <= value <= maximal:
+            return value
+        return minimal
 
 
 class CarWashStation:
@@ -28,8 +23,7 @@ class CarWashStation:
         average_rating: float,
         count_of_ratings: int
     ) -> None:
-        self.distance_from_city_center = (self.validate_distance
-                                          (distance_from_city_center))
+        self.distance_from_city_center = distance_from_city_center
         self.clean_power = self.validate_clean_power(clean_power)
         self.average_rating = self.validate_average_rating(average_rating)
         self.count_of_ratings = (self.validate_count_of_ratings
